@@ -445,14 +445,16 @@
         <path d="M143 245l14 10h44l14-10M180 139v91" fill="none" stroke="#202223" stroke-width="2"/>
         <g transform="rotate(-8 185 202)" stroke-linecap="round" stroke-linejoin="round" fill="none">
           <path id="tagMark" d="M139 203c1-8 5-12 10-10s5 9 2 14c-4 6-10 7-13 2z M155 210l3-17 7 9 8-12-1 18 M176 208l4-16 10 13 4-17 M199 192l-2 16 M204 208l2-18c9-3 12 4 5 9 9-1 9 7 0 9z M218 190l-3 12c-1 7 7 10 11 3 2-4 2-10 4-15 M236 192c-4-4-11-3-13 2-2 4 2 5 7 6s5 5 1 8c-4 3-9 2-11-1"/>
-          <use href="#tagMark" stroke="#030404" stroke-width="5.5"/>
-          <use href="#tagMark" stroke="url(#ink)" stroke-width="2.5"/>
-          <path d="M134 218c25 5 59 0 94-12l-10 10 22-10" stroke="url(#ink)" stroke-width="2.8"/>
-          <path d="M148 210l-1 6M193 207l1 5M221 205l2 5" stroke="url(#ink)" stroke-width="1.8"/>
-          <path d="M131 195l6-3M131 201l4-1M238 181l4-4M240 185l5-2" stroke="url(#ink)" stroke-width="1.8"/>
+          <use href="#tagMark" stroke="#030404" stroke-width="7"/>
+          <use href="#tagMark" stroke="url(#ink)" stroke-width="3.5"/>
+          <path d="M131 220c25 7 62 1 99-14l-11 12 27-12" stroke="url(#ink)" stroke-width="4"/>
+          <path d="M148 210l-1 11c0 3-2 3-3 0l-1-4M193 207l1 10c0 3 2 3 3 0l1-4M221 205l2 8c1 3 3 2 3-1" stroke="url(#ink)" stroke-width="2.5"/>
+          <path d="M131 195l8-5M130 202l6-2M238 181l5-6M241 186l7-3" stroke="url(#ink)" stroke-width="2.5"/>
         </g>
-        <circle cx="142" cy="188" r="1.5" fill="#e5e5df"/>
-        <circle cx="244" cy="190" r="1.2" fill="#aeb2b1"/>
+        <path d="M133 186l-5-4 7 1-2-7 5 6 4-5-1 8M234 195l4-6 2 5 6-2-4 5 3 5-6-2-4 5v-6z" fill="url(#ink)" opacity=".8"/>
+        <circle cx="138" cy="215" r="1.8" fill="#d9dad5"/>
+        <circle cx="241" cy="201" r="1.5" fill="#aeb2b1"/>
+        <circle cx="134" cy="184" r="1.2" fill="#e5e5df"/>
         <path d="M125 289h110" stroke="#303233" stroke-width="3"/>
       </g>
       <g transform="translate(240 0)">
@@ -464,7 +466,9 @@
         <path d="M120 159l24 12M240 159l-24 12M132 177l-5 107M228 177l5 107M144 116l16 21M212 116l-16 21" fill="none" stroke="#303233" stroke-width="2" opacity=".7"/>
         <text x="180" y="212" fill="none" stroke="#030404" stroke-width="8" stroke-linejoin="round" font-family="Arial Rounded MT Bold, Trebuchet MS, sans-serif" font-size="19" font-weight="900" letter-spacing=".1" text-anchor="middle">OMNIBUS</text>
         <text x="180" y="212" fill="url(#ink)" stroke="#737879" stroke-width="1.5" paint-order="stroke" font-family="Arial Rounded MT Bold, Trebuchet MS, sans-serif" font-size="19" font-weight="900" letter-spacing=".1" text-anchor="middle">OMNIBUS</text>
+        <path d="M157 217l-1 11c0 3-2 3-3 0l-1-4M177 218l1 12c0 3 2 3 3 0l1-5M198 216l-1 9c0 3 2 3 4 0l2-4M138 201l8-4M220 199l8-5" fill="none" stroke="url(#ink)" stroke-width="2.2" stroke-linecap="round"/>
         <path d="M146 222c18 7 50 7 68 0M155 238c12 5 38 5 50 0" fill="none" stroke="#353839" stroke-width="2"/>
+        <path d="M144 191l-5-3M224 191l5-4M151 230l-3 2M206 234l3 2" stroke="#d7d9d4" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
         <path d="M180 255l5 11 11 5-11 5-5 11-5-11-11-5 11-5z" fill="url(#ink)" opacity=".9"/>
         <path d="M125 289h110" stroke="#303233" stroke-width="3"/>
       </g>
@@ -479,7 +483,7 @@
         name: "Omnibus Fallen Angel Hoodie",
         price: "35.00",
         category: "Apparel",
-        desc: "All-black oversized fleece with a handstyle Omnibus chest tag, bubble-letter back print, and halo hood detail.",
+        desc: "All-black oversized fleece with a bold spray-tag front, bubble-letter back print, and halo hood detail.",
         image: svgPlaceholder1,
         link: ""
       },
@@ -502,10 +506,11 @@
       (fallenAngelHoodie.name === "Omnibus Essential Hoodie" ||
         fallenAngelHoodie.image.includes("M300%20194v151M248%20246h104") ||
         fallenAngelHoodie.image.includes("M293%20187l7-12") ||
-        fallenAngelHoodie.image.includes("Brush%20Script%20MT"))
+        fallenAngelHoodie.image.includes("Brush%20Script%20MT") ||
+        fallenAngelHoodie.image.includes("M139%20203c1-8"))
     ) {
       fallenAngelHoodie.name = "Omnibus Fallen Angel Hoodie";
-      fallenAngelHoodie.desc = "All-black oversized fleece with a handstyle Omnibus chest tag, bubble-letter back print, and halo hood detail.";
+      fallenAngelHoodie.desc = "All-black oversized fleece with a bold spray-tag front, bubble-letter back print, and halo hood detail.";
       fallenAngelHoodie.image = svgPlaceholder1;
       saveProducts();
     }
