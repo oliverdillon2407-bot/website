@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omnibus | Store</title>
+  <style>
+    :root {
+      --bg: #e9ecef;
+      --surface: #f4f5f7;
+      --card: #f8f9fa;
+      --text: #1f2428;
+      --muted: #5c6670;
+      --border: #d1d7de;
+      --accent: #2c353d;
+      --accent-hover: #1a2026;
+      --danger: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 340px;
+      min-width: 200px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .filter-bar {
+      max-width: 1100px;
+      margin: 1.25rem auto 0.5rem;
+      padding: 0 1.25rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.45rem 0.95rem;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--muted);
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: var(--accent);
+      color: #f8f9fa;
+      border-color: var(--accent);
+    }
+
+    main {
+      max-width: 1100px;
+      width: 100%;
+      margin: 1rem auto 3rem;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      background-color: #dce1e6;
+      display: block;
+    }
+
+    .product-info {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-cat {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: #f8f9fa;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      padding: 0.35rem 0.65rem;
+      font-size: 0.8rem;
+      margin-top: 0.6rem;
+      width: 100%;
+    }
+
+    #admin-panel {
+      display: none;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    #admin-panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 24, 28, 0.55);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 200;
+    }
+
+    .modal {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-width: 420px;
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    .modal h3 {
+      margin-bottom: 0.4rem;
+    }
+
+    .modal p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg);
+    }
+
+    footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .owner-link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+    }
+
+    .empty-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="brand">Omnibus</div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search items..." onkeyup="renderProducts()" />
+      </div>
+    </div>
+  </header>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="setCategory('All', this)">All</button>
+    <button class="filter-btn" onclick="setCategory('Apparel', this)">Apparel</button>
+    <button class="filter-btn" onclick="setCategory('Accessories', this)">Accessories</button>
+    <button class="filter-btn" onclick="setCategory('Digital', this)">Digital</button>
+    <button class="filter-btn" onclick="setCategory('Other', this)">Other</button>
+  </div>
+
+  <main>
+    <section id="admin-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h2>Add New Item to Omnibus</h2>
+        <button class="btn btn-secondary" onclick="logoutAdmin()">Close Panel</button>
+      </div>
+      <form id="addProductForm" onsubmit="addProduct(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Item Name *</label>
+            <input type="text" id="pName" placeholder="e.g., Custom Heavyweight Tee" required />
+          </div>
+          <div class="form-group">
+            <label>Price ($) *</label>
+            <input type="number" id="pPrice" step="0.01" min="0" placeholder="25.00" required />
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="pCategory">
+              <option value="Apparel">Apparel</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Digital">Digital</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Upload Photo *</label>
+            <input type="file" id="pImage" accept="image/*" required />
+          </div>
+          <div class="form-group">
+            <label>Short Description</label>
+            <input type="text" id="pDesc" placeholder="Sizes S-XL, washed slate gray" />
+          </div>
+          <div class="form-group">
+            <label>Payment Link (Optional)</label>
+            <input type="url" id="pLink" placeholder="https://buy.stripe.com/..." />
+          </div>
+        </div>
+        <button type="submit" class="btn">Publish Item to Store</button>
+      </form>
+    </section>
+
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <div class="modal-backdrop" id="orderModal">
+    <div class="modal">
+      <h3 id="modalTitle">Order Item</h3>
+      <p id="modalPrice"></p>
+      <div class="form-group" style="margin-bottom:0.75rem;">
+        <label>Your Name</label>
+        <input type="text" id="buyerName" placeholder="Enter your name" />
+      </div>
+      <div class="form-group" style="margin-bottom:0.75rem;">
+        <label>Contact (Instagram, Phone, or Email)</label>
+        <input type="text" id="buyerContact" placeholder="@username or phone number" />
+      </div>
+      <div class="form-group">
+        <label>Notes (Size, Pickup/Delivery)</label>
+        <input type="text" id="buyerNotes" placeholder="e.g., Size Large, cash at school" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="submitOrder()">Request Order</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> Omnibus. All rights reserved.
+    <button class="owner-link" onclick="loginAdmin()">Owner Login</button>
+  </footer>
+
+  <script>
+    const ADMIN_PIN = "1234";
+
+    let isAdmin = false;
+    let currentCategory = "All";
+    let selectedProduct = null;
+
+    const svgPlaceholder1 = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"><rect fill="#cfd5dc" width="600" height="450"/><text fill="#2c353d" font-family="sans-serif" font-size="28" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Omnibus Hoodie</text></svg>');
+    const svgPlaceholder2 = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"><rect fill="#cfd5dc" width="600" height="450"/><text fill="#2c353d" font-family="sans-serif" font-size="28" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Sticker Pack</text></svg>');
+
+    const defaultProducts = [
+      {
+        id: 1,
+        name: "Omnibus Essential Hoodie",
+        price: "35.00",
+        category: "Apparel",
+        desc: "Midweight fleece in charcoal slate. Clean minimalist logo.",
+        image: svgPlaceholder1,
+        link: ""
+      },
+      {
+        id: 2,
+        name: "Matte Vinyl Sticker Pack",
+        price: "5.00",
+        category: "Accessories",
+        desc: "Set of 4 weatherproof matte stickers for laptops and bottles.",
+        image: svgPlaceholder2,
+        link: ""
+      }
+    ];
+
+    let products = JSON.parse(localStorage.getItem("omnibus_products")) || defaultProducts;
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function saveProducts() {
+      localStorage.setItem("omnibus_products", JSON.stringify(products));
+    }
+
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      grid.innerHTML = "";
+
+      const filtered = products.filter(p => {
+        const matchesCat = currentCategory === "All" || p.category === currentCategory;
+        const matchesSearch =
+          p.name.toLowerCase().includes(query) ||
+          (p.desc && p.desc.toLowerCase().includes(query));
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-msg">No items found matching your search.</div>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        const actionButton = p.link
+          ? `<a href="${p.link}" target="_blank" rel="noopener" class="btn">Buy Now</a>`
+          : `<button class="btn" onclick="openOrderModal(${p.id})">Buy / Request</button>`;
+
+        const deleteButton = isAdmin
+          ? `<button class="btn btn-danger" onclick="deleteProduct(${p.id})">Remove Item</button>`
+          : "";
+
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" class="product-img" />
+          <div class="product-info">
+            <div class="product-cat">${p.category}</div>
+            <div class="product-title">${p.name}</div>
+            <div class="product-desc">${p.desc || ""}</div>
+            <div class="product-bottom">
+              <div class="product-price">$${Number(p.price).toFixed(2)}</div>
+              ${actionButton}
+            </div>
+            ${deleteButton}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function loginAdmin() {
+      const entered = prompt("Enter Owner PIN:");
+      if (entered === ADMIN_PIN) {
+        isAdmin = true;
+        document.getElementById("admin-panel").style.display = "block";
+        renderProducts();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (entered !== null) {
+        alert("Incorrect PIN.");
+      }
+    }
+
+    function logoutAdmin() {
+      isAdmin = false;
+      document.getElementById("admin-panel").style.display = "none";
+      renderProducts();
+    }
+
+    function addProduct(event) {
+      event.preventDefault();
+      const name = document.getElementById("pName").value.trim();
+      const price = document.getElementById("pPrice").value;
+      const category = document.getElementById("pCategory").value;
+      const desc = document.getElementById("pDesc").value.trim();
+      const link = document.getElementById("pLink").value.trim();
+      const fileInput = document.getElementById("pImage");
+
+      if (!fileInput.files || !fileInput.files[0]) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const newProduct = {
+          id: Date.now(),
+          name,
+          price,
+          category,
+          desc,
+          link,
+          image: e.target.result
+        };
+
+        products.unshift(newProduct);
+        saveProducts();
+        document.getElementById("addProductForm").reset();
+        renderProducts();
+        alert("Item added to Omnibus!");
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+
+    function deleteProduct(id) {
+      if (!confirm("Remove this item from Omnibus?")) return;
+      products = products.filter(p => p.id !== id);
+      saveProducts();
+      renderProducts();
+    }
+
+    function openOrderModal(id) {
+      selectedProduct = products.find(p => p.id === id);
+      if (!selectedProduct) return;
+      document.getElementById("modalTitle").textContent = selectedProduct.name;
+      document.getElementById("modalPrice").textContent = `Price: $${Number(selectedProduct.price).toFixed(2)}`;
+      document.getElementById("orderModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("orderModal").style.display = "none";
+    }
+
+    function submitOrder() {
+      const name = document.getElementById("buyerName").value.trim();
+      const contact = document.getElementById("buyerContact").value.trim();
+      const notes = document.getElementById("buyerNotes").value.trim();
+
+      if (!name || !contact) {
+        alert("Please enter your name and contact info.");
+        return;
+      }
+
+      const subject = encodeURIComponent(`Omnibus Order: ${selectedProduct.name}`);
+      const body = encodeURIComponent(
+        `Item: ${selectedProduct.name} ($${Number(selectedProduct.price).toFixed(2)})\nBuyer: ${name}\nContact: ${contact}\nNotes: ${notes}`
+      );
+      window.location.href = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+      closeModal();
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
