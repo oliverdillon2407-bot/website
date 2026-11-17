@@ -429,35 +429,40 @@
 
     const svgPlaceholder1 = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
       <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7e9e8"/><stop offset="1" stop-color="#bcc1c3"/></linearGradient>
-        <linearGradient id="cloth" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#20262a"/><stop offset="0.58" stop-color="#111518"/><stop offset="1" stop-color="#080a0b"/></linearGradient>
-        <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f7f3"/><stop offset=".28" stop-color="#9da3a5"/><stop offset=".55" stop-color="#e8e8df"/><stop offset=".78" stop-color="#6e7476"/><stop offset="1" stop-color="#dfe1dc"/></linearGradient>
-        <filter id="shadow"><feGaussianBlur stdDeviation="12"/></filter>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9e9e7"/><stop offset="1" stop-color="#c5c7c6"/></linearGradient>
+        <linearGradient id="cloth" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#191a1b"/><stop offset=".55" stop-color="#090a0b"/><stop offset="1" stop-color="#030404"/></linearGradient>
+        <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4f3ef"/><stop offset=".48" stop-color="#aeb2b1"/><stop offset="1" stop-color="#e5e5df"/></linearGradient>
+        <filter id="shadow"><feGaussianBlur stdDeviation="10"/></filter>
       </defs>
       <rect width="600" height="450" fill="url(#bg)"/>
-      <ellipse cx="300" cy="398" rx="178" ry="24" fill="#2a3032" opacity=".18" filter="url(#shadow)"/>
-      <path d="M238 98l62-25 62 25 42 22 74 52-43 76-34-20 15 176H184l15-176-34 20-43-76 74-52z" fill="url(#cloth)"/>
-      <path d="M238 98c12-28 112-28 124 0l-28 67h-68z" fill="#2a3032"/>
-      <path d="M248 111c10 29 94 29 104 0l-13 58h-78z" fill="#090b0c"/>
-      <path d="M266 169c18 13 50 13 68 0" fill="none" stroke="#42494c" stroke-width="3"/>
-      <path d="M293 187l7-12 7 12-1 35 14-13 18 17-8 12-19 9 4 80-8 14-7 6-7-6-8-14 4-80-19-9-8-12 18-17 14 13z" fill="url(#chrome)" stroke="#555d60" stroke-width="2"/>
-      <path d="M300 190v134M278 230l20 9M322 230l-20 9M289 245h22M288 325h24" fill="none" stroke="#454c4e" stroke-width="2"/>
-      <path d="M300 194v26M273 229l15 7M327 229l-15 7M294 253l-3 69M306 253l3 69" fill="none" stroke="#f5f5ef" stroke-width="1.5" opacity=".78"/>
-      <path d="M300 229l9 15-9 12-9-12z" fill="#171c1e" stroke="#f5f5ef" stroke-width="2"/>
-      <circle cx="300" cy="244" r="2" fill="#f5f5ef"/>
-      <path d="M285 251c-8 5-10 12-6 18M315 251c8 5 10 12 6 18M291 316l-8 9 9 4M309 316l8 9-9 4" fill="none" stroke="#dfe1dc" stroke-width="1.5" opacity=".75"/>
-      <path d="M164 202c-20 39-24 79-22 119M436 202c20 39 24 79 22 119" fill="none" stroke="#30383b" stroke-width="5"/>
-      <g fill="url(#chrome)" opacity=".72">
-        <path d="M294 178l6-18 6 18 18 6-18 6-6 18-6-18-18-6z"/>
-        <circle cx="217" cy="347" r="3"/>
+      <ellipse cx="300" cy="381" rx="205" ry="18" fill="#252729" opacity=".2" filter="url(#shadow)"/>
+      <g>
+        <path d="M148 112l22-12h20l22 12 27 10 30 31-18 31-21-10 7 130H119l7-130-21 10-18-31 30-31z" fill="url(#cloth)" stroke="#242627" stroke-width="2"/>
+        <path d="M151 111c-1-30 57-30 58 0l-13 27h-32z" fill="#17191a" stroke="#292b2c" stroke-width="2"/>
+        <path d="M160 111c8 15 32 15 40 0l-8 24h-24z" fill="#050606"/>
+        <path d="M120 159l24 12M240 159l-24 12M132 177l-5 107M228 177l5 107M144 116l16 21M212 116l-16 21" fill="none" stroke="#303233" stroke-width="2" opacity=".7"/>
+        <path d="M142 245c0-8 7-14 15-14h44c8 0 15 6 15 14l-8 29h-58z" fill="#080909" stroke="#292b2c" stroke-width="2"/>
+        <path d="M143 245l14 10h44l14-10M180 139v91" fill="none" stroke="#202223" stroke-width="2"/>
+        <text x="180" y="207" fill="url(#ink)" stroke="#070808" stroke-width="2.5" paint-order="stroke" font-family="Brush Script MT, Segoe Script, cursive" font-size="27" font-style="italic" font-weight="700" letter-spacing="-1.5" text-anchor="middle" transform="rotate(-8 180 207)">Omnibus</text>
+        <path d="M141 214c19 7 42 8 68 0" fill="none" stroke="#d9dad5" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M145 191l3-7 3 7 7 3-7 3-3 7-3-7-7-3z" fill="url(#ink)"/>
+        <path d="M125 289h110" stroke="#303233" stroke-width="3"/>
       </g>
-      <g fill="none" stroke="#e0e3df" stroke-width="3" opacity=".55">
-        <path d="M98 178c34-26 58-34 82-24-27 13-46 32-57 58"/>
-        <path d="M502 178c-34-26-58-34-82-24 27 13 46 32 57 58"/>
-        <path d="M110 145c30-20 58-18 78 2-28 4-49 18-64 42"/>
-        <path d="M490 145c-30-20-58-18-78 2 28 4 49 18 64 42"/>
+      <g transform="translate(240 0)">
+        <ellipse cx="180" cy="108" rx="39" ry="24" fill="none" stroke="url(#ink)" stroke-width="2.5"/>
+        <ellipse cx="180" cy="108" rx="46" ry="29" fill="none" stroke="#f2f1ec" stroke-width="1" opacity=".5"/>
+        <path d="M148 112l22-12h20l22 12 27 10 30 31-18 31-21-10 7 130H119l7-130-21 10-18-31 30-31z" fill="url(#cloth)" stroke="#242627" stroke-width="2"/>
+        <path d="M151 111c-1-30 57-30 58 0l-13 27h-32z" fill="#17191a" stroke="#292b2c" stroke-width="2"/>
+        <path d="M160 111c8 15 32 15 40 0l-8 24h-24z" fill="#050606"/>
+        <path d="M120 159l24 12M240 159l-24 12M132 177l-5 107M228 177l5 107M144 116l16 21M212 116l-16 21" fill="none" stroke="#303233" stroke-width="2" opacity=".7"/>
+        <text x="180" y="212" fill="none" stroke="#030404" stroke-width="8" stroke-linejoin="round" font-family="Arial Rounded MT Bold, Trebuchet MS, sans-serif" font-size="19" font-weight="900" letter-spacing=".1" text-anchor="middle">OMNIBUS</text>
+        <text x="180" y="212" fill="url(#ink)" stroke="#737879" stroke-width="1.5" paint-order="stroke" font-family="Arial Rounded MT Bold, Trebuchet MS, sans-serif" font-size="19" font-weight="900" letter-spacing=".1" text-anchor="middle">OMNIBUS</text>
+        <path d="M146 222c18 7 50 7 68 0M155 238c12 5 38 5 50 0" fill="none" stroke="#353839" stroke-width="2"/>
+        <path d="M180 255l5 11 11 5-11 5-5 11-5-11-11-5 11-5z" fill="url(#ink)" opacity=".9"/>
+        <path d="M125 289h110" stroke="#303233" stroke-width="3"/>
       </g>
-      <text x="300" y="382" fill="#dce0dc" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="8" text-anchor="middle">OMNIBUS</text>
+      <text x="180" y="326" fill="#626769" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="3" text-anchor="middle">FRONT</text>
+      <text x="420" y="326" fill="#626769" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="3" text-anchor="middle">BACK</text>
     </svg>`);
     const svgPlaceholder2 = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"><rect fill="#cfd5dc" width="600" height="450"/><text fill="#2c353d" font-family="sans-serif" font-size="28" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Sticker Pack</text></svg>');
 
@@ -467,7 +472,7 @@
         name: "Omnibus Fallen Angel Hoodie",
         price: "35.00",
         category: "Apparel",
-        desc: "Oversized charcoal fleece with a chrome cross and angel-wing details.",
+        desc: "All-black oversized fleece with an Omnibus tag front, bubble-letter back print, and halo hood detail.",
         image: svgPlaceholder1,
         link: ""
       },
@@ -488,10 +493,11 @@
     if (
       fallenAngelHoodie &&
       (fallenAngelHoodie.name === "Omnibus Essential Hoodie" ||
-        fallenAngelHoodie.image.includes("M300%20194v151M248%20246h104"))
+        fallenAngelHoodie.image.includes("M300%20194v151M248%20246h104") ||
+        fallenAngelHoodie.image.includes("M293%20187l7-12"))
     ) {
       fallenAngelHoodie.name = "Omnibus Fallen Angel Hoodie";
-      fallenAngelHoodie.desc = "Oversized charcoal fleece with a chrome cross and angel-wing details.";
+      fallenAngelHoodie.desc = "All-black oversized fleece with an Omnibus tag front, bubble-letter back print, and halo hood detail.";
       fallenAngelHoodie.image = svgPlaceholder1;
       saveProducts();
     }
