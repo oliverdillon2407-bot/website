@@ -4,7 +4,7 @@
 
 Open the live store: [https://oliverdillon2407-bot.github.io/website/](https://oliverdillon2407-bot.github.io/website/)
 
-If GitHub Pages has not been enabled yet, open [Pages settings](https://github.com/oliverdillon2407-bot/website/settings/pages), choose **Deploy from a branch**, select **main** and **/**, then click **Save**.
+The website is currently available directly while this Codespace is running: [https://shiny-cod-jrgp4vqx5w7p2w4x-8000.app.github.dev/](https://shiny-cod-jrgp4vqx5w7p2w4x-8000.app.github.dev/)
 
 ## Run locally
 
